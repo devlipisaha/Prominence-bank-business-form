@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open a Business Bank Account – Prominence Bank</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #0d2045;
+    --navy-light: #132a5e;
+    --blue: #1a4fa0;
+    --blue-bright: #2563eb;
+    --gold: #c9a84c;
+    --gold-light: #e8c96b;
+    --gold-pale: #f5e6b8;
+    --cyan: #38b2e0;
+    --white: #ffffff;
+    --off-white: #f0f4fa;
+    --gray-light: #e2e8f0;
+    --gray: #94a3b8;
+    --gray-dark: #475569;
+    --red: #e53e3e;
+    --green: #38a169;
+    --amber: #d97706;
+    --shadow: 0 4px 32px rgba(10,22,40,0.18);
+    --shadow-gold: 0 4px 24px rgba(201,168,76,0.18);
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--white); min-height: 100vh; }
+
+  .topbar { background: var(--cyan); padding: 8px 40px; display: flex; align-items: center; gap: 32px; font-size: 13px; color: var(--navy); font-weight: 500; flex-wrap: wrap; }
+  .topbar-item { display: flex; align-items: center; gap: 6px; }
+  .topbar-item svg { width: 15px; height: 15px; }
+
+  .header { background: var(--navy); border-bottom: 1px solid rgba(201,168,76,0.25); padding: 0 40px; display: flex; align-items: center; justify-content: space-between; min-height: 72px; }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo-icon { width: 48px; height: 48px; background: linear-gradient(135deg, var(--cyan), var(--blue-bright)); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+  .logo-text { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--white); letter-spacing: 0.5px; }
+  .logo-sub { font-size: 10px; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; display: block; margin-top: -2px; }
+  .header-nav { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .header-nav a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 13.5px; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; font-weight: 500; }
+  .header-nav a:hover { color: var(--white); background: rgba(255,255,255,0.07); }
+  .header-nav a.active { color: var(--gold); }
+  .btn-login { background: linear-gradient(135deg, var(--gold), var(--gold-light)) !important; color: var(--navy) !important; padding: 8px 20px !important; border-radius: 8px !important; font-weight: 600 !important; }
+
+  .page-hero { background: linear-gradient(135deg, #0d1f3c 0%, #0f2d5e 60%, #162870 100%); padding: 48px 40px 32px; text-align: center; position: relative; overflow: hidden; border-bottom: 2px solid rgba(201,168,76,0.3); }
+  .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(201,168,76,0.07) 0%, transparent 70%); pointer-events: none; }
+  .page-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent); }
+  .hero-eyebrow { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 4vw, 40px); font-weight: 700; color: var(--white); margin-bottom: 8px; }
+  .hero-subtitle { font-size: 14px; color: rgba(255,255,255,0.6); max-width: 520px; margin: 0 auto; line-height: 1.6; }
+
+  .main-wrap { max-width: 900px; margin: 0 auto; padding: 40px 20px 80px; }
+
+  .step-nav-wrap { background: var(--navy-mid); border: 1px solid rgba(201,168,76,0.2); border-radius: var(--radius); padding: 0 24px; margin-bottom: 6px; overflow-x: auto; scrollbar-width: none; }
+  .step-nav-wrap::-webkit-scrollbar { display: none; }
+  .step-nav { display: flex; align-items: stretch; min-width: max-content; }
+  .step-tab { display: flex; align-items: center; gap: 8px; padding: 18px 18px; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.25s; white-space: nowrap; color: var(--gray); font-size: 13px; font-weight: 500; user-select: none; }
+  .step-tab .step-num { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; transition: all 0.25s; flex-shrink: 0; }
+  .step-tab.active { color: var(--white); border-bottom-color: var(--gold); }
+  .step-tab.active .step-num { background: var(--gold); color: var(--navy); }
+  .step-tab.completed { color: var(--cyan); }
+  .step-tab.completed .step-num { background: var(--cyan); color: var(--navy); }
+  .step-tab.completed .step-num::after { content: '✓'; }
+  .step-tab.completed .step-num span { display: none; }
+
+  .progress-wrap { display: flex; align-items: center; gap: 14px; padding: 14px 0 24px; }
+  .progress-label { font-size: 13px; font-weight: 600; color: var(--gold); white-space: nowrap; }
+  .progress-bar-bg { flex: 1; height: 6px; background: rgba(255,255,255,0.1); border-radius: 99px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius: 99px; transition: width 0.5s cubic-bezier(.4,0,.2,1); }
+  .progress-pct { font-size: 12px; color: var(--gray); white-space: nowrap; }
+
+  .form-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(201,168,76,0.15); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .form-card-header { background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(26,79,160,0.15)); border-bottom: 1px solid rgba(201,168,76,0.2); padding: 28px 36px 24px; position: relative; }
+  .form-card-header::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(180deg, var(--gold), var(--gold-light)); }
+  .form-section-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+  .form-section-desc { font-size: 13.5px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+  .form-card-body { padding: 36px; }
+
+  .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 24px; margin-bottom: 20px; }
+  .field-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .field-grid.cols-1 { grid-template-columns: 1fr; }
+  @media(max-width:640px) { .field-grid, .field-grid.cols-3 { grid-template-columns: 1fr; } }
+  .field-group { display: flex; flex-direction: column; gap: 6px; }
+  .field-group.span-2 { grid-column: span 2; }
+  @media(max-width:640px) { .field-group.span-2 { grid-column: span 1; } }
+
+  .field-label { font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,0.75); letter-spacing: 0.3px; text-transform: uppercase; }
+  .field-label .req { color: var(--gold); margin-left: 2px; }
+  .field-input, .field-select, .field-textarea { background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.12); border-radius: var(--radius-sm); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 11px 14px; transition: all 0.2s; width: 100%; outline: none; -webkit-appearance: none; }
+  .field-input::placeholder { color: rgba(255,255,255,0.3); }
+  .field-input:focus, .field-select:focus, .field-textarea:focus { border-color: var(--gold); background: rgba(201,168,76,0.06); box-shadow: 0 0 0 3px rgba(201,168,76,0.1); }
+  .field-select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23c9a84c' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+  .field-select option { background: var(--navy-mid); color: var(--white); }
+  .field-textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+  .field-hint { font-size: 11.5px; color: var(--gray); margin-top: 2px; }
+
+  .section-divider { display: flex; align-items: center; gap: 14px; margin: 32px 0 24px; }
+  .section-divider-line { flex: 1; height: 1px; background: rgba(201,168,76,0.2); }
+  .section-divider-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 600; white-space: nowrap; }
+
+  .account-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(195px, 1fr)); gap: 16px; margin-bottom: 8px; }
+  .account-card { border: 2px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 20px; cursor: pointer; transition: all 0.25s; position: relative; }
+  .account-card:hover { border-color: rgba(201,168,76,0.4); }
+  .account-card.selected { border-color: var(--gold); background: rgba(201,168,76,0.08); box-shadow: 0 0 0 3px rgba(201,168,76,0.12); }
+  .account-card input[type="radio"] { display: none; }
+  .account-card-radio { width: 20px; height: 20px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; transition: all 0.2s; }
+  .account-card.selected .account-card-radio { border-color: var(--gold); background: var(--gold); }
+  .account-card.selected .account-card-radio::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--navy); }
+  .account-card-title { font-weight: 700; font-size: 15px; color: var(--white); margin-bottom: 6px; }
+  .account-card-desc { font-size: 12.5px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+  .account-card-fee { display: inline-block; margin-top: 10px; font-size: 11.5px; color: var(--gold); background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.25); border-radius: 4px; padding: 3px 8px; font-weight: 600; }
+  .account-card-badge { position: absolute; top: 12px; right: 12px; font-size: 10px; color: var(--cyan); background: rgba(56,178,224,0.1); border: 1px solid rgba(56,178,224,0.25); border-radius: 4px; padding: 2px 7px; font-weight: 600; }
+
+  .info-box { background: rgba(56,178,224,0.07); border: 1px solid rgba(56,178,224,0.2); border-left: 3px solid var(--cyan); border-radius: var(--radius-sm); padding: 14px 18px; font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 20px; }
+  .info-box strong { color: var(--cyan); }
+  .warn-box { background: rgba(217,119,6,0.07); border: 1px solid rgba(217,119,6,0.2); border-left: 3px solid var(--amber); border-radius: var(--radius-sm); padding: 14px 18px; font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 20px; }
+  .warn-box strong { color: #fbbf24; }
+
+  .file-upload-area { border: 2px dashed rgba(201,168,76,0.3); border-radius: var(--radius); padding: 28px; text-align: center; cursor: pointer; transition: all 0.25s; background: rgba(201,168,76,0.03); margin-bottom: 16px; }
+  .file-upload-area:hover { border-color: var(--gold); background: rgba(201,168,76,0.06); }
+  .file-upload-area input { display: none; }
+  .file-upload-icon { font-size: 32px; margin-bottom: 8px; }
+  .file-upload-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+  .file-upload-hint { font-size: 12px; color: rgba(255,255,255,0.4); }
+  .file-upload-btn { display: inline-block; margin-top: 12px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--navy); padding: 8px 20px; border-radius: 7px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+  .file-name-display { margin-top: 10px; font-size: 13px; color: var(--cyan); display: none; }
+
+  .payment-block { background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.15); border-radius: var(--radius); padding: 22px 26px; margin-bottom: 20px; }
+  .payment-block-title { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--gold); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .payment-row { display: flex; gap: 10px; font-size: 13.5px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06); line-height: 1.5; }
+  .payment-row:last-child { border-bottom: none; }
+  .payment-key { color: rgba(255,255,255,0.5); min-width: 160px; flex-shrink: 0; }
+  .payment-val { color: var(--white); font-weight: 500; word-break: break-all; }
+  .copy-btn { margin-left: auto; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.25); color: var(--gold); font-size: 11px; padding: 2px 8px; border-radius: 4px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.15s; flex-shrink: 0; }
+  .copy-btn:hover { background: rgba(201,168,76,0.2); }
+
+  .policy-block { background: rgba(56,178,224,0.05); border: 1px solid rgba(56,178,224,0.15); border-radius: var(--radius-sm); padding: 18px 22px; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.7; margin-bottom: 20px; }
+  .policy-block strong { color: var(--white); }
+  .policy-block ul { padding-left: 18px; margin: 8px 0; }
+  .policy-block li { margin-bottom: 4px; }
+
+  .form-nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 32px; border-top: 1px solid rgba(201,168,76,0.15); margin-top: 32px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; border: none; transition: all 0.22s; text-decoration: none; user-select: none; }
+  .btn-primary { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%); color: var(--navy); box-shadow: 0 2px 12px rgba(201,168,76,0.25); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(201,168,76,0.35); }
+  .btn-secondary { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.75); border: 1.5px solid rgba(255,255,255,0.15); }
+  .btn-secondary:hover { background: rgba(255,255,255,0.12); color: var(--white); }
+  .btn-ghost { background: transparent; color: rgba(255,255,255,0.5); font-size: 13px; padding: 10px 18px; }
+  .btn-ghost:hover { color: var(--white); }
+  .btn-submit { background: linear-gradient(135deg, var(--blue-bright), var(--blue)); color: var(--white); box-shadow: 0 2px 12px rgba(37,99,235,0.3); min-width: 180px; justify-content: center; }
+  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(37,99,235,0.4); }
+  .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .nav-left { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+
+  .step-panel { display: none; animation: fadeIn 0.3s ease; }
+  .step-panel.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .review-section { margin-bottom: 28px; }
+  .review-section-title { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
+  .review-grid { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-sm); overflow: hidden; }
+  .review-row { display: flex; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 13.5px; }
+  .review-row:last-child { border-bottom: none; }
+  .review-key { width: 200px; flex-shrink: 0; padding: 11px 16px; color: rgba(255,255,255,0.5); border-right: 1px solid rgba(255,255,255,0.06); font-size: 12.5px; }
+  .review-val { padding: 11px 16px; color: var(--white); font-weight: 500; }
+
+  .success-panel { text-align: center; padding: 60px 40px; }
+  .success-icon { width: 72px; height: 72px; background: linear-gradient(135deg, var(--green), #48bb78); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 24px; box-shadow: 0 0 0 12px rgba(56,161,105,0.1); }
+  .success-title { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--white); margin-bottom: 12px; }
+  .success-sub { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.6; max-width: 460px; margin: 0 auto 32px; }
+  .app-id-display { display: inline-block; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); border-radius: var(--radius-sm); padding: 14px 28px; font-family: monospace; font-size: 20px; color: var(--gold); letter-spacing: 2px; margin-bottom: 32px; }
+
+  .kyc-note { background: rgba(201,168,76,0.06); border: 1px solid rgba(201,168,76,0.2); border-left: 3px solid var(--gold); border-radius: var(--radius-sm); padding: 16px 20px; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.65; margin-bottom: 24px; }
+  .kyc-note strong { color: var(--gold-light); }
+
+  .checkbox-group { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; margin-bottom: 12px; }
+  .checkbox-group input[type="checkbox"] { display: none; }
+  .custom-checkbox { width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.2); border-radius: 4px; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; cursor: pointer; }
+  .checkbox-group:has(input:checked) .custom-checkbox { background: var(--gold); border-color: var(--gold); }
+  .checkbox-group:has(input:checked) .custom-checkbox::after { content: '✓'; font-size: 11px; color: var(--navy); font-weight: 700; }
+  .checkbox-label { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+
+  .footer { background: var(--navy); border-top: 1px solid rgba(201,168,76,0.15); padding: 32px 40px; text-align: center; font-size: 12.5px; color: rgba(255,255,255,0.35); }
+  .footer a { color: var(--gold); text-decoration: none; }
+  .footer-line { margin: 6px 0; }
+
+  @media(max-width:760px) {
+    .topbar { padding: 8px 16px; gap: 12px; font-size: 11.5px; }
+    .header { padding: 0 16px; }
+    .header-nav { display: none; }
+    .page-hero { padding: 32px 20px 24px; }
+    .form-card-header, .form-card-body { padding: 22px 20px; }
+    .form-nav { flex-direction: column-reverse; align-items: stretch; }
+    .btn { justify-content: center; }
+    .main-wrap { padding: 24px 12px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.5 12.86 19.79 19.79 0 01.44 4.25 2 2 0 012.42 2.1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 9.4a16 16 0 006.29 6.29l1.76-1.76a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+    +44 20 8895 6493
+  </div>
+  <div class="topbar-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    (051) 210567 PROMIN G
+  </div>
+  <div class="topbar-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    Diplomatic Jurisdiction – Foreign Trade Mission Office (ETMO)
+  </div>
+</div>
+
+<header class="header">
+  <a href="#" class="logo">
+    <div class="logo-icon">🏛</div>
+    <div>
+      <div class="logo-text">PROMINENCE</div>
+      <span class="logo-sub">BANK</span>
+    </div>
+  </a>
+  <nav class="header-nav">
+    <a href="#">Home</a>
+    <a href="#">About Us</a>
+    <a href="#">Fee</a>
+    <a href="#" class="active">Open Account</a>
+    <a href="#">KTT Account</a>
+    <a href="#">Services</a>
+    <a href="#">Contact Us</a>
+    <a href="#" class="btn-login">Login</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <div class="hero-eyebrow">Prominence Bank • Corporate &amp; Business Banking</div>
+  <h1 class="hero-title">Open a Business Bank Account</h1>
+  <p class="hero-subtitle">Complete the business account application form. All information is encrypted and processed under full confidentiality and AML/KYC compliance.</p>
+</div>
+
+<div class="main-wrap">
+
+  <div class="step-nav-wrap">
+    <div class="step-nav" id="stepNav">
+      <div class="step-tab active" data-step="1"><div class="step-num"><span>1</span></div> Account Type</div>
+      <div class="step-tab" data-step="2"><div class="step-num"><span>2</span></div> Company Info</div>
+      <div class="step-tab" data-step="3"><div class="step-num"><span>3</span></div> Directors</div>
+      <div class="step-tab" data-step="4"><div class="step-num"><span>4</span></div> Address &amp; Contact</div>
+      <div class="step-tab" data-step="5"><div class="step-num"><span>5</span></div> Transaction Profile</div>
+      <div class="step-tab" data-step="6"><div class="step-num"><span>6</span></div> Source of Funds</div>
+      <div class="step-tab" data-step="7"><div class="step-num"><span>7</span></div> KYC Uploads</div>
+      <div class="step-tab" data-step="8"><div class="step-num"><span>8</span></div> Payment Info</div>
+      <div class="step-tab" data-step="9"><div class="step-num"><span>9</span></div> Review &amp; Submit</div>
+    </div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-label" id="stepLabel">Step 1 of 9</div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill" style="width:11%"></div></div>
+    <div class="progress-pct" id="progressPct">11% Complete</div>
+  </div>
+
+  <div class="form-card">
+
+    <!-- ════ STEP 1: ACCOUNT TYPE ════ -->
+    <div class="step-panel active" id="step1">
+      <div class="form-card-header">
+        <div class="form-section-title">Select Business Account Type</div>
+        <div class="form-section-desc">Choose the type of business bank account you wish to open for your company or entity.</div>
+      </div>
+      <div class="form-card-body">
+        <div class="field-grid cols-1">
+          <div class="field-group">
+            <label class="field-label">Application ID <span class="req">*</span></label>
+            <input type="text" class="field-input" id="appId" placeholder="e.g. BBA-2025-00001" />
+            <div class="field-hint">A reference ID for tracking your business account application</div>
+          </div>
+        </div>
+
+        <div class="section-divider">
+          <div class="section-divider-line"></div>
+          <div class="section-divider-label">Business Account Options</div>
+          <div class="section-divider-line"></div>
+        </div>
+
+        <div class="account-cards">
+          <label class="account-card selected" onclick="selectAccount(this)">
+            <input type="radio" name="accountType" value="corporate" checked>
+            <div class="account-card-radio"></div>
+            <div class="account-card-title">Corporate Account</div>
+            <div class="account-card-desc">Full-service business banking for corporations, LLCs, and registered companies.</div>
+            <span class="account-card-fee">€25,000 fee</span>
+            <span class="account-card-badge">Most Popular</span>
+          </label>
+          <label class="account-card" onclick="selectAccount(this)">
+            <input type="radio" name="accountType" value="custody_biz">
+            <div class="account-card-radio"></div>
+            <div class="account-card-title">Business Custody</div>
+            <div class="account-card-desc">Corporate custody and asset management account for institutional clients.</div>
+            <span class="account-card-fee">€25,000 fee</span>
+            <span class="account-card-badge">KTT Ready</span>
+          </label>
+          <label class="account-card" onclick="selectAccount(this)">
+            <input type="radio" name="accountType" value="numbered_biz">
+            <div class="account-card-radio"></div>
+            <div class="account-card-title">Numbered Account</div>
+            <div class="account-card-desc">Anonymous coded business account with the highest level of corporate privacy.</div>
+            <span class="account-card-fee">€50,000 fee</span>
+            <span class="account-card-badge">KTT Ready</span>
+          </label>
+          <label class="account-card" onclick="selectAccount(this)">
+            <input type="radio" name="accountType" value="crypto_biz">
+            <div class="account-card-radio"></div>
+            <div class="account-card-title">Business Crypto</div>
+            <div class="account-card-desc">Institutional cryptocurrency account for digital asset holding and blockchain transactions.</div>
+            <span class="account-card-fee">€25,000 fee</span>
+          </label>
+        </div>
+
+        <div class="info-box" style="margin-top:20px;">
+          <strong>KTT Eligibility:</strong> Corporate Accounts, Business Custody, and Numbered Accounts are eligible for <strong>KEY TESTED TELEX (KTT)</strong> transactions. Please use BLOCK CAPITALS throughout this form.
+        </div>
+
+        <div class="form-nav">
+          <div class="nav-left">
+            <button class="btn btn-ghost" onclick="saveLater()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+              Save &amp; Continue Later
+            </button>
+          </div>
+          <button class="btn btn-primary" onclick="goNext()">Next: Company Info <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ STEP 2: COMPANY INFO ════ -->
+    <div class="step-panel" id="step2">
+      <div class="form-card-header">
+        <div class="form-section-title">Company Information</div>
+        <div class="form-section-desc">Provide your company's legal registration details. Use BLOCK CAPITALS as shown on official documents.</div>
+      </div>
+      <div class="form-card-body">
+        <div class="field-grid">
+          <div class="field-group span-2">
+            <label class="field-label">Legal Company Name <span class="req">*</span></label>
+            <input type="text" class="field-input" placeholder="Full legal registered name" required />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Trading Name (if different)</label>
+            <input type="text" class="field-input" placeholder="DBA or trading name" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Company Registration Number <span class="req">*</span></label>
+            <input type="text" class="field-input" placeholder="Official registration number" required />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Date of Incorporation <span class="req">*</span></label>
+            <input type="date" class="field-input" required />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Country of Incorporation <span class="req">*</span></label>
+            <select class="field-select">
+              <option value="">Select country</option>
+              <option>United Kingdom</option>
+              <option>United States</option>
+              <option>Germany</option>
+              <option>Switzerland</option>
+              <option>UAE</option>
+              <option>Cayman Islands</option>
+              <option>BVI</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Legal Entity Type <span class="req">*</span></label>
+            <select class="field-select">
+              <option value="">Select type</option>
+              <option>Limited Company (Ltd)</option>
+              <option>Public Limited Company (PLC)</option>
+              <option>LLC</option>
+              <option>Corporation</option>
+              <option>Partnership</option>
+              <option>Trust</option>
+              <option>Foundation</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Industry / Business Activity <span class="req">*</span></label>
+            <input type="text" class="field-input" placeholder="Primary business activity" required />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Tax Identification Number</label>
+            <input type="text" class="field-input" placeholder="EIN / TIN / VAT Number" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">LEI Number (if applicable)</label>
+            <input type="text" class="field-input" placeholder="Legal Entity Identifier" />
+          </div>
+          <div class="field-group span-2">
+            <label class="field-label">Brief Description of Business Operations</label>
+            <textarea class="field-textarea" style="min-height:80px;" placeholder="Describe your company's primary business activities and operations..."></textarea>
+          </div>
+        </div>
+
+        <div class="form-nav">
+          <div class="nav-left">
+            <button class="btn btn-secondary" onclick="goPrev()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> Back</button>
+            <button class="btn btn-ghost" onclick="saveLater()">Save &amp; Continue Later</button>
+          </div>
+          <button class="btn btn-primary" onclick="goNext()">Next: Directors <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ STEP 3: DIRECTORS / UBOs ════ -->
+    <div class="step-panel" id="step3">
+      <div class="form-card-header">
+        <div class="form-section-title">Directors &amp; Ultimate Beneficial Owners</div>
+        <div class="form-section-desc">Provide details of all directors and beneficial owners with 10% or more ownership.</div>
+      </div>
+      <div class="form-card-body">
+        <div class="warn-box">
+          <strong>Required:</strong> All individuals with significant control (PSC) or beneficial ownership of 10% or more must be declared. Failure to disclose may result in the application being declined.
+        </div>
+
+        <div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-label">Director / Authorised Signatory</div><div class="section-divider-line"></div></div>
+
+        <div class="field-grid">
+          <div class="field-group">
+            <label class="field-label">First Name <span class="req">*</span></label>
+            <input type="text" class="field-input" placeholder="As on passport" required />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Last Name <span class="req">*</span></label>
+            <input type="text" class="field-input" placeholder="As on passport" required />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Date of Birth <span class="req">*</span></label>
+            <input type="date" class="field-input" required />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Nationality <span class="req">*</span></label>
+            <input type="text" class="field-input" placeholder="e.g. British" required />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Passport / ID Number <span class="req">*</span></label>
+            <input type="text" class="field-input" placeholder="Document number" required />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Country of Issue <span class="req">*</span></label>
+            <select class="field-select"><option value="">Select country</option><option>United Kingdom</option><option>United States</option><option>Other</option></select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Role / Position <span class="req">*</span></label>
+            <select class="field-select">
+              <option value="">Select role</option>
+              <option>Director</option>
+              <option>CEO</option>
+              <option>CFO</option>
+              <option>Authorised Signatory</option>
+              <option>Beneficial Owner</option>
+              <option>Shareholder</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Ownership Percentage</label>
+            <input type="text" class="field-input" placeholder="e.g. 50%" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Personal Email <span class="req">*</span></label>
+            <input type="email" class="field-input" placeholder="director@company.com" required />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Personal Mobile <span class="req">*</span></label>
+            <input type="tel" class="field-input" placeholder="+44 XXXX XXXXXX" required />
+          </div>
+          <div class="field-group span-2">
+            <label class="field-label">Residential Address <span class="req">*</span></label>
+            <input type="text" class="field-input" placeholder="Full residential address" required />
+          </div>
+        </div>
+
+        <div class="info-box">
+          If there are additional directors or beneficial owners, please list them in the notes or attach a separate schedule.
+        </div>
+
+        <div class="form-nav">
+          <div class="nav-left">
+            <button class="btn btn-secondary" onclick="goPrev()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> Back</button>
+            <button class="btn btn-ghost" onclick="saveLater()">Save &amp; Continue Later</button>
+          </div>
+          <button class="btn btn-primary" onclick="goNext()">Next: Address &amp; Contact <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ STEP 4: ADDRESS & CONTACT ════ -->
+    <div class="step-panel" id="step4">
+      <div class="form-card-header">
+        <div class="form-section-title">Business Address &amp; Contact</div>
+        <div class="form-section-desc">Provide the registered office and operational contact details for your business.</div>
+      </div>
+      <div class="form-card-body">
+        <div class="field-grid">
+          <div class="field-group span-2">
+            <label class="field-label">Registered Office Address <span class="req">*</span></label>
+            <input type="text" class="field-input" placeholder="Registered address (Line 1)" required />
+          </div>
+          <div class="field-group span-2">
+            <label class="field-label">Address Line 2</label>
+            <input type="text" class="field-input" placeholder="Suite, floor, etc." />
+          </div>
+          <div class="field-group">
+            <label class="field-label">City</label>
+            <input type="text" class="field-input" placeholder="City" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">State / Province</label>
+            <input type="text" class="field-input" placeholder="State or Province" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">ZIP / Postal Code</label>
+            <input type="text" class="field-input" placeholder="Postal code" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Country <span class="req">*</span></label>
+            <select class="field-select"><option value="">Select country</option><option>United Kingdom</option><option>United States</option><option>Germany</option><option>Other</option></select>
+          </div>
+        </div>
+
+        <div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-label">Business Contact</div><div class="section-divider-line"></div></div>
+
+        <div class="field-grid">
+          <div class="field-group">
+            <label class="field-label">Business Email <span class="req">*</span></label>
+            <input type="email" class="field-input" placeholder="accounts@company.com" required />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Confirm Business Email <span class="req">*</span></label>
+            <input type="email" class="field-input" placeholder="Confirm email" required />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Business Phone <span class="req">*</span></label>
+            <input type="tel" class="field-input" placeholder="+44 XXXX XXXXXX" required />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Business Fax</label>
+            <input type="tel" class="field-input" placeholder="Optional" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Company Website</label>
+            <input type="url" class="field-input" placeholder="https://www.company.com" />
+          </div>
+        </div>
+
+        <div class="form-nav">
+          <div class="nav-left">
+            <button class="btn btn-secondary" onclick="goPrev()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> Back</button>
+            <button class="btn btn-ghost" onclick="saveLater()">Save &amp; Continue Later</button>
+          </div>
+          <button class="btn btn-primary" onclick="goNext()">Next: Transaction Profile <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ STEP 5: TRANSACTION PROFILE ════ -->
+    <div class="step-panel" id="step5">
+      <div class="form-card-header">
+        <div class="form-section-title">Transaction Profile</div>
+        <div class="form-section-desc">Describe your business's expected banking and transaction activity for AML compliance.</div>
+      </div>
+      <div class="form-card-body">
+        <div class="field-grid">
+          <div class="field-group">
+            <label class="field-label">Countries for Outgoing Transfers</label>
+            <input type="text" class="field-input" placeholder="e.g. UK, Germany, UAE" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Countries for Incoming Transfers</label>
+            <input type="text" class="field-input" placeholder="e.g. USA, Switzerland" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Est. Outgoing Transfers / Month</label>
+            <select class="field-select"><option value="">Select</option><option>1–5</option><option>6–15</option><option>16–30</option><option>31–50</option><option>50+</option></select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Est. Incoming Transfers / Month</label>
+            <select class="field-select"><option value="">Select</option><option>1–5</option><option>6–15</option><option>16–30</option><option>31–50</option><option>50+</option></select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Average Transfer Value</label>
+            <input type="text" class="field-input" placeholder="e.g. €100,000" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Maximum Transfer Value</label>
+            <input type="text" class="field-input" placeholder="e.g. €5,000,000" />
+          </div>
+        </div>
+
+        <div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-label">Account Setup</div><div class="section-divider-line"></div></div>
+
+        <div class="field-grid">
+          <div class="field-group">
+            <label class="field-label">Account Currency <span class="req">*</span></label>
+            <select class="field-select"><option value="">Select</option><option>EUR – Euro</option><option>USD – US Dollar</option><option>GBP – British Pound</option><option>CHF – Swiss Franc</option></select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Account Reference Name</label>
+            <input type="text" class="field-input" placeholder="Optional account nickname" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Referral / Recommended By</label>
+            <input type="text" class="field-input" placeholder="Referrer name or code" />
+          </div>
+        </div>
+
+        <div class="form-nav">
+          <div class="nav-left">
+            <button class="btn btn-secondary" onclick="goPrev()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> Back</button>
+            <button class="btn btn-ghost" onclick="saveLater()">Save &amp; Continue Later</button>
+          </div>
+          <button class="btn btn-primary" onclick="goNext()">Next: Source of Funds <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ STEP 6: SOURCE OF FUNDS ════ -->
+    <div class="step-panel" id="step6">
+      <div class="form-card-header">
+        <div class="form-section-title">Source of Funds</div>
+        <div class="form-section-desc">Provide details of the initial funding and originating bank for AML due diligence.</div>
+      </div>
+      <div class="form-card-body">
+        <div class="field-grid">
+          <div class="field-group">
+            <label class="field-label">Currency of Initial Funding</label>
+            <select class="field-select"><option value="">Select</option><option>EUR</option><option>USD</option><option>GBP</option><option>CHF</option></select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Source of Funding</label>
+            <select class="field-select"><option value="">Select</option><option>Business Revenue</option><option>Investment Capital</option><option>Shareholder Funds</option><option>Loan</option><option>Asset Sale</option><option>Other</option></select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Value of Initial Funding</label>
+            <input type="text" class="field-input" placeholder="e.g. €2,000,000" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Originating Bank Name</label>
+            <input type="text" class="field-input" placeholder="Name of originating bank" />
+          </div>
+          <div class="field-group span-2">
+            <label class="field-label">Originating Bank Address</label>
+            <input type="text" class="field-input" placeholder="Full bank address" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Account Name at Origin Bank</label>
+            <input type="text" class="field-input" placeholder="Company/Entity name" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Account Number / IBAN</label>
+            <input type="text" class="field-input" placeholder="Account number or IBAN" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Authorised Signatory Name</label>
+            <input type="text" class="field-input" placeholder="Full legal name" />
+          </div>
+          <div class="field-group span-2">
+            <label class="field-label">Describe How These Funds Were Generated</label>
+            <textarea class="field-textarea" placeholder="Please describe precisely how these funds were generated by the company..."></textarea>
+          </div>
+        </div>
+
+        <div class="form-nav">
+          <div class="nav-left">
+            <button class="btn btn-secondary" onclick="goPrev()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> Back</button>
+            <button class="btn btn-ghost" onclick="saveLater()">Save &amp; Continue Later</button>
+          </div>
+          <button class="btn btn-primary" onclick="goNext()">Next: KYC Uploads <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ STEP 7: KYC UPLOADS ════ -->
+    <div class="step-panel" id="step7">
+      <div class="form-card-header">
+        <div class="form-section-title">KYC / AML Document Uploads</div>
+        <div class="form-section-desc">Upload the required identity and corporate documents. All files must be clear, colour, and valid.</div>
+      </div>
+      <div class="form-card-body">
+        <div class="kyc-note">
+          <strong>Document Requirements:</strong> Please ensure all documents are clear, valid, and in full colour. PCM may assist with intake and document coordination and transmit the compiled package to Prominence Bank. Prominence Bank may request additional documentation or enhanced due diligence at any time.
+        </div>
+
+        <div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-label">Identity Documents</div><div class="section-divider-line"></div></div>
+
+        <div class="file-upload-area" onclick="document.getElementById('passportFile').click()">
+          <input type="file" id="passportFile" accept="image/*,.pdf" onchange="showFileName(this,'passportName')">
+          <div class="file-upload-icon">🛂</div>
+          <div class="file-upload-title">Director/Signatory Passport <span style="color:var(--red)">*</span></div>
+          <div class="file-upload-hint">Full colour passport of the primary authorised signatory (JPEG, PNG, PDF). Max 10MB.</div>
+          <div class="file-upload-btn">Choose File</div>
+          <div class="file-name-display" id="passportName"></div>
+        </div>
+
+        <div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-label">Corporate Documents</div><div class="section-divider-line"></div></div>
+
+        <div class="file-upload-area" onclick="document.getElementById('certIncorp').click()">
+          <input type="file" id="certIncorp" accept="image/*,.pdf" onchange="showFileName(this,'certIncorpName')">
+          <div class="file-upload-icon">📋</div>
+          <div class="file-upload-title">Certificate of Incorporation <span style="color:var(--red)">*</span></div>
+          <div class="file-upload-hint">Official certificate of incorporation or equivalent. Max 10MB.</div>
+          <div class="file-upload-btn">Choose File</div>
+          <div class="file-name-display" id="certIncorpName"></div>
+        </div>
+
+        <div class="file-upload-area" onclick="document.getElementById('memArtsFile').click()">
+          <input type="file" id="memArtsFile" accept="image/*,.pdf" onchange="showFileName(this,'memArtsName')">
+          <div class="file-upload-icon">📄</div>
+          <div class="file-upload-title">Memorandum &amp; Articles of Association</div>
+          <div class="file-upload-hint">M&A or equivalent constitutional documents. Max 10MB.</div>
+          <div class="file-upload-btn">Choose File</div>
+          <div class="file-name-display" id="memArtsName"></div>
+        </div>
+
+        <div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-label">Fee Payment Bank Details</div><div class="section-divider-line"></div></div>
+
+        <div class="info-box">If paying the account opening fee, please also provide details of the company bank account from which the fee is being paid.</div>
+
+        <div class="field-grid">
+          <div class="field-group"><label class="field-label">Bank Name</label><input type="text" class="field-input" placeholder="Bank paying the fee" /></div>
+          <div class="field-group"><label class="field-label">Bank Address</label><input type="text" class="field-input" placeholder="Full bank address" /></div>
+          <div class="field-group"><label class="field-label">SWIFT Code</label><input type="text" class="field-input" placeholder="SWIFT / BIC" /></div>
+          <div class="field-group"><label class="field-label">Account Holder Name</label><input type="text" class="field-input" placeholder="Company name as on account" /></div>
+          <div class="field-group"><label class="field-label">Account Number</label><input type="text" class="field-input" placeholder="Account / IBAN" /></div>
+          <div class="field-group"><label class="field-label">Signatory Name</label><input type="text" class="field-input" placeholder="Full legal name" /></div>
+          <div class="field-group span-2"><label class="field-label">Origin of Deposit Funds</label><textarea class="field-textarea" style="min-height:80px;" placeholder="Describe the origin of the deposit funds..."></textarea></div>
+        </div>
+
+        <div class="form-nav">
+          <div class="nav-left">
+            <button class="btn btn-secondary" onclick="goPrev()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> Back</button>
+            <button class="btn btn-ghost" onclick="saveLater()">Save &amp; Continue Later</button>
+          </div>
+          <button class="btn btn-primary" onclick="goNext()">Next: Payment Info <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ STEP 8: PAYMENT INFO ════ -->
+    <div class="step-panel" id="step8">
+      <div class="form-card-header">
+        <div class="form-section-title">Account Opening Fee — Payment Instructions</div>
+        <div class="form-section-desc">Payment of the Account Opening Fee does not guarantee approval or account opening.</div>
+      </div>
+      <div class="form-card-body">
+        <div class="policy-block">
+          <strong>Business Account Opening Fees</strong>
+          <ul style="margin-top:8px;">
+            <li><strong>€25,000</strong> – Corporate / Custody / Cryptocurrency Account</li>
+            <li><strong>$25,000</strong> – USD Account</li>
+            <li><strong>€50,000</strong> – Numbered Account</li>
+          </ul>
+          <br>
+          <strong>Refund Policy:</strong> If declined, fees refunded in full by PCM within 10 business days. If approved and account opened, the fee is non-refundable as it covers completed compliance processing.
+        </div>
+
+        <div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-label">Option 1 — SWIFT Wire Transfer</div><div class="section-divider-line"></div></div>
+
+        <div class="payment-block">
+          <div class="payment-block-title">🇪🇺 Euro (€) SWIFT Details</div>
+          <div class="payment-row"><span class="payment-key">Bank Name</span><span class="payment-val">Wise Europe</span></div>
+          <div class="payment-row"><span class="payment-key">Address</span><span class="payment-val">Rue du Trône 100, 3rd floor. Brussels. 1050. Belgium</span></div>
+          <div class="payment-row"><span class="payment-key">SWIFT Code</span><span class="payment-val">TRWIBEB1XXX <button class="copy-btn" onclick="copyText('TRWIBEB1XXX', this)">Copy</button></span></div>
+          <div class="payment-row"><span class="payment-key">Account Name</span><span class="payment-val">PROMINENCE CLIENT MANAGEMENT</span></div>
+          <div class="payment-row"><span class="payment-key">IBAN</span><span class="payment-val">BE31905717979455 <button class="copy-btn" onclick="copyText('BE31905717979455', this)">Copy</button></span></div>
+          <div class="payment-row"><span class="payment-key">Reference / Memo</span><span class="payment-val">Application ID: [Your ID] | Onboarding and Compliance Processing Fee</span></div>
+        </div>
+
+        <div class="payment-block">
+          <div class="payment-block-title">🇺🇸 USD ($) SWIFT Details</div>
+          <div class="payment-row"><span class="payment-key">Bank Name</span><span class="payment-val">Wise US Inc.</span></div>
+          <div class="payment-row"><span class="payment-key">Address</span><span class="payment-val">108 W 13th St, Wilmington, DE, 19801, United States</span></div>
+          <div class="payment-row"><span class="payment-key">SWIFT Code</span><span class="payment-val">TRWIUS35XXX <button class="copy-btn" onclick="copyText('TRWIUS35XXX', this)">Copy</button></span></div>
+          <div class="payment-row"><span class="payment-key">Account Name</span><span class="payment-val">PROMINENCE CLIENT MANAGEMENT</span></div>
+          <div class="payment-row"><span class="payment-key">Account Number</span><span class="payment-val">205414015428310 <button class="copy-btn" onclick="copyText('205414015428310', this)">Copy</button></span></div>
+        </div>
+
+        <div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-label">Option 2 — Cryptocurrency (USDT TRC20)</div><div class="section-divider-line"></div></div>
+        <div class="payment-block">
+          <div class="payment-block-title">₮ USDT TRC20 Wallet</div>
+          <div class="info-box" style="margin-bottom:0;">Please contact Prominence Bank directly for the current USDT TRC20 wallet address prior to transfer.</div>
+        </div>
+
+        <div class="form-nav">
+          <div class="nav-left">
+            <button class="btn btn-secondary" onclick="goPrev()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> Back</button>
+          </div>
+          <button class="btn btn-primary" onclick="goNext()">Review &amp; Submit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ STEP 9: REVIEW & SUBMIT ════ -->
+    <div class="step-panel" id="step9">
+      <div class="form-card-header">
+        <div class="form-section-title">Review &amp; Submit</div>
+        <div class="form-section-desc">Review your business account application before final submission. Use the Back button to make any corrections.</div>
+      </div>
+      <div class="form-card-body">
+        <div class="review-section">
+          <div class="review-section-title">Account Type</div>
+          <div class="review-grid">
+            <div class="review-row"><span class="review-key">Account Type</span><span class="review-val">Corporate Account</span></div>
+            <div class="review-row"><span class="review-key">Application ID</span><span class="review-val" id="rv-appId">—</span></div>
+          </div>
+        </div>
+        <div class="review-section">
+          <div class="review-section-title">Company Information</div>
+          <div class="review-grid">
+            <div class="review-row"><span class="review-key">Company Name</span><span class="review-val">[Provided above]</span></div>
+            <div class="review-row"><span class="review-key">Registration No.</span><span class="review-val">[Provided above]</span></div>
+            <div class="review-row"><span class="review-key">Entity Type</span><span class="review-val">[Provided above]</span></div>
+            <div class="review-row"><span class="review-key">Country</span><span class="review-val">[Provided above]</span></div>
+          </div>
+        </div>
+        <div class="review-section">
+          <div class="review-section-title">Director / Signatory</div>
+          <div class="review-grid">
+            <div class="review-row"><span class="review-key">Full Name</span><span class="review-val">[Provided above]</span></div>
+            <div class="review-row"><span class="review-key">Email</span><span class="review-val">[Provided above]</span></div>
+          </div>
+        </div>
+
+        <div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-label">Declaration</div><div class="section-divider-line"></div></div>
+
+        <label class="checkbox-group">
+          <input type="checkbox" id="dec1">
+          <div class="custom-checkbox"></div>
+          <span class="checkbox-label">I confirm that all information provided in this application is true, accurate, and complete to the best of my knowledge as an authorised representative of the company.</span>
+        </label>
+        <label class="checkbox-group">
+          <input type="checkbox" id="dec2">
+          <div class="custom-checkbox"></div>
+          <span class="checkbox-label">I understand that payment of the Account Opening Fee does not guarantee approval or account opening.</span>
+        </label>
+        <label class="checkbox-group">
+          <input type="checkbox" id="dec3">
+          <div class="custom-checkbox"></div>
+          <span class="checkbox-label">I confirm all Ultimate Beneficial Owners with 10% or more ownership have been disclosed.</span>
+        </label>
+        <label class="checkbox-group">
+          <input type="checkbox" id="dec4">
+          <div class="custom-checkbox"></div>
+          <span class="checkbox-label">I consent to Prominence Bank processing company and personal data for the purpose of this application, in accordance with applicable data protection laws.</span>
+        </label>
+
+        <div class="form-nav">
+          <div class="nav-left">
+            <button class="btn btn-secondary" onclick="goPrev()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> Back</button>
+          </div>
+          <button class="btn btn-submit" onclick="submitForm()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Submit Application
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="step-panel" id="stepSuccess">
+      <div class="success-panel">
+        <div class="success-icon">✓</div>
+        <h2 class="success-title">Business Application Submitted!</h2>
+        <p class="success-sub">Thank you for applying to Prominence Bank. Your business account application has been received and will be reviewed by our compliance team. We will contact you at the email provided.</p>
+        <div class="app-id-display" id="successAppId">BBA-2025-00001</div>
+        <p style="font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:28px;">Please keep your Application ID safe — required for payment reference and all correspondence.</p>
+        <button class="btn btn-primary" onclick="location.reload()">Start New Application</button>
+      </div>
+    </div>
+
+  </div><!-- /form-card -->
+</div><!-- /main-wrap -->
+
+<footer class="footer">
+  <div class="footer-line"><strong style="color:rgba(255,255,255,0.6)">PROMINENCE BANK</strong> &nbsp;|&nbsp; Diplomatic Jurisdiction – Foreign Trade Mission Office (ETMO)</div>
+  <div class="footer-line">+44 20 8895 6493 &nbsp;|&nbsp; <a href="https://prominencebank.com">prominencebank.com</a></div>
+  <div class="footer-line" style="margin-top:10px;">© 2025 Prominence Bank. All rights reserved. &nbsp;|&nbsp; <a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms & Conditions</a></div>
+</footer>
+
+<script>
+  let currentStep = 1;
+  const totalSteps = 9;
+  const progressMap = {1:11,2:22,3:33,4:44,5:55,6:66,7:77,8:88,9:100};
+
+  /* ── VALIDATION RULES per step ── */
+  function validateStep(step) {
+    const errors = [];
+
+    function markError(el, msg) {
+      el.style.borderColor = 'var(--red)';
+      el.style.boxShadow = '0 0 0 3px rgba(229,62,62,0.15)';
+      let errEl = el.parentElement.querySelector('.inline-error');
+      if (!errEl) {
+        errEl = document.createElement('div');
+        errEl.className = 'inline-error';
+        errEl.style.cssText = 'color:var(--red);font-size:11.5px;margin-top:4px;';
+        el.parentElement.appendChild(errEl);
+      }
+      errEl.textContent = msg;
+    }
+
+    function clearError(el) {
+      el.style.borderColor = '';
+      el.style.boxShadow = '';
+      const errEl = el.parentElement.querySelector('.inline-error');
+      if (errEl) errEl.remove();
+    }
+
+    function requireEl(el, label) {
+      if (!el) return;
+      if (!el.value.trim()) { markError(el, label + ' is required.'); errors.push(label); }
+      else clearError(el);
+    }
+
+    function requireFile(inputId, label) {
+      const el = document.getElementById(inputId);
+      if (!el) return;
+      if (!el.files || el.files.length === 0) {
+        const area = el.closest('.file-upload-area');
+        if (area) {
+          area.style.borderColor = 'var(--red)';
+          let msg = area.querySelector('.file-error-msg');
+          if (!msg) { msg = document.createElement('div'); msg.className = 'file-error-msg'; msg.style.cssText = 'color:var(--red);font-size:12px;margin-top:8px;'; area.appendChild(msg); }
+          msg.textContent = label + ' is required.';
+        }
+        errors.push(label);
+      } else {
+        const area = el.closest('.file-upload-area');
+        if (area) { area.style.borderColor = ''; const m = area.querySelector('.file-error-msg'); if(m) m.remove(); }
+      }
+    }
+
+    if (step === 1) {
+      requireEl(document.getElementById('appId'), 'Application ID');
+    }
+
+    if (step === 2) {
+      // Company name, registration number, date of incorporation, country, entity type, industry
+      const fields = [
+        ['input[placeholder="Full legal registered name"]', 'Company Name'],
+        ['input[placeholder="Official registration number"]', 'Registration Number'],
+        ['input[placeholder="date"]', 'Date of Incorporation'],
+        ['input[placeholder="Primary business activity"]', 'Business Activity'],
+      ];
+      fields.forEach(([sel, lbl]) => {
+        const el = document.querySelector('#step2 ' + sel);
+        if (el) requireEl(el, lbl);
+      });
+      // Date of Incorporation
+      const dob = document.querySelector('#step2 input[type="date"]');
+      if (dob) requireEl(dob, 'Date of Incorporation');
+      // selects
+      document.querySelectorAll('#step2 .field-select').forEach(sel => {
+        const lbl = sel.closest('.field-group')?.querySelector('.field-label')?.textContent.replace('*','').trim() || 'Field';
+        if (sel.hasAttribute('required') || lbl.includes('Type') || lbl.includes('Country')) {
+          requireEl(sel, lbl);
+        }
+      });
+    }
+
+    if (step === 3) {
+      [
+        ['input[placeholder="As on passport"][type="text"]', 'First Name'],
+        ['input[placeholder="As on passport"]:last-of-type', 'Last Name'],
+      ].forEach(([sel, lbl]) => {
+        const el = document.querySelector('#step3 ' + sel);
+        if (el) requireEl(el, lbl);
+      });
+      // All required fields in step3
+      document.querySelectorAll('#step3 .field-input[required], #step3 .field-select[required]').forEach(el => {
+        const lbl = el.closest('.field-group')?.querySelector('.field-label')?.textContent.replace('*','').trim() || 'Field';
+        requireEl(el, lbl);
+      });
+      // Manually check key fields
+      const fName = document.querySelector('#step3 input[placeholder="As on passport"]');
+      if (fName) requireEl(fName, 'First Name');
+      const dob = document.querySelector('#step3 input[type="date"]');
+      if (dob) requireEl(dob, 'Date of Birth');
+      const nat = document.querySelector('#step3 input[placeholder="e.g. British"]');
+      if (nat) requireEl(nat, 'Nationality');
+      const passport = document.querySelector('#step3 input[placeholder="Document number"]');
+      if (passport) requireEl(passport, 'Passport Number');
+      const country = document.querySelector('#step3 .field-select');
+      if (country) requireEl(country, 'Country of Issue');
+      const role = document.querySelectorAll('#step3 .field-select')[1];
+      if (role) requireEl(role, 'Role');
+      const email = document.querySelector('#step3 input[type="email"]');
+      if (email) {
+        if (!email.value.trim()) { markError(email, 'Email is required.'); errors.push('Email'); }
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) { markError(email, 'Enter a valid email.'); errors.push('Email'); }
+        else clearError(email);
+      }
+      const mobile = document.querySelector('#step3 input[type="tel"]');
+      if (mobile) requireEl(mobile, 'Mobile Number');
+      const addr = document.querySelector('#step3 input[placeholder="Full residential address"]');
+      if (addr) requireEl(addr, 'Residential Address');
+    }
+
+    if (step === 4) {
+      const addr = document.querySelector('#step4 input[placeholder="Registered address (Line 1)"]');
+      if (addr) requireEl(addr, 'Registered Address');
+      const country = document.querySelector('#step4 .field-select');
+      if (country) requireEl(country, 'Country');
+      const email = document.querySelector('#step4 input[type="email"]');
+      if (email) {
+        if (!email.value.trim()) { markError(email, 'Business Email is required.'); errors.push('Email'); }
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) { markError(email, 'Enter a valid email.'); errors.push('Email'); }
+        else clearError(email);
+      }
+      const confirmEmail = document.querySelectorAll('#step4 input[type="email"]')[1];
+      if (confirmEmail && email) {
+        if (confirmEmail.value.trim() !== email.value.trim()) { markError(confirmEmail, 'Emails must match.'); errors.push('Email match'); }
+        else clearError(confirmEmail);
+      }
+      const phone = document.querySelector('#step4 input[type="tel"]');
+      if (phone) requireEl(phone, 'Business Phone');
+    }
+
+    if (step === 5) {
+      const currency = document.querySelector('#step5 .field-select');
+      if (currency) requireEl(currency, 'Account Currency');
+    }
+
+    if (step === 6) {
+      const desc = document.querySelector('#step6 .field-textarea');
+      if (desc) requireEl(desc, 'Description of how funds were generated');
+    }
+
+    if (step === 7) {
+      requireFile('passportFile', 'Director Passport');
+      requireFile('certIncorp', 'Certificate of Incorporation');
+    }
+
+    // Step 8 (payment info) — informational only
+    if (step === 8) { /* no required fields */ }
+
+    if (step === 9) {
+      ['dec1','dec2','dec3','dec4'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el || !el.checked) errors.push('Declaration');
+      });
+      if (errors.length) showToast('Please confirm all four declarations before submitting.', 'error');
+    }
+
+    return errors;
+  }
+
+  // Clear errors on user input
+  document.addEventListener('input', e => {
+    if (e.target.matches('.field-input, .field-select, .field-textarea')) {
+      e.target.style.borderColor = '';
+      e.target.style.boxShadow = '';
+      const errEl = e.target.parentElement.querySelector('.inline-error');
+      if (errEl) errEl.remove();
+    }
+  });
+  document.addEventListener('change', e => {
+    if (e.target.matches('.field-input, .field-select, .field-textarea')) {
+      e.target.style.borderColor = '';
+      e.target.style.boxShadow = '';
+      const errEl = e.target.parentElement.querySelector('.inline-error');
+      if (errEl) errEl.remove();
+    }
+  });
+
+  /* ── TOAST ── */
+  function showToast(msg, type) {
+    let toast = document.getElementById('validationToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'validationToast';
+      toast.style.cssText = `position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(80px);
+        background:#1e293b;border:1.5px solid var(--red);border-radius:10px;padding:14px 24px;
+        font-size:13.5px;color:#fff;font-family:'DM Sans',sans-serif;box-shadow:0 8px 32px rgba(0,0,0,0.4);
+        z-index:9999;transition:transform 0.3s ease,opacity 0.3s ease;opacity:0;max-width:420px;text-align:center;line-height:1.5;`;
+      document.body.appendChild(toast);
+    }
+    toast.style.borderColor = type === 'error' ? 'var(--red)' : 'var(--green)';
+    toast.innerHTML = (type === 'error' ? '⚠️ ' : '✓ ') + msg;
+    toast.style.transform = 'translateX(-50%) translateY(0)';
+    toast.style.opacity = '1';
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(() => { toast.style.transform = 'translateX(-50%) translateY(80px)'; toast.style.opacity = '0'; }, 3500);
+  }
+
+  function updateProgress(step) {
+    const pct = progressMap[step] || 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressPct').textContent = pct + '% Complete';
+    document.getElementById('stepLabel').textContent = 'Step ' + step + ' of ' + totalSteps;
+    document.querySelectorAll('.step-tab').forEach(tab => {
+      const n = +tab.dataset.step;
+      tab.classList.remove('active','completed');
+      if(n === step) tab.classList.add('active');
+      else if(n < step) tab.classList.add('completed');
+    });
+  }
+
+  function showStep(n) {
+    document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+    const panel = document.getElementById('step' + n);
+    if(panel) { panel.classList.add('active'); updateProgress(n); }
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  function goNext() {
+    const errors = validateStep(currentStep);
+    if (errors.length > 0) {
+      showToast('Please complete all required fields before continuing.', 'error');
+      const firstErr = document.querySelector('#step' + currentStep + ' [style*="border-color: var(--red)"], #step' + currentStep + ' [style*="red"]');
+      if (firstErr) firstErr.scrollIntoView({behavior:'smooth', block:'center'});
+      return;
+    }
+    if (currentStep < totalSteps) { currentStep++; showStep(currentStep); }
+  }
+
+  function goPrev() { if(currentStep > 1) { currentStep--; showStep(currentStep); } }
+
+  function saveLater() {
+    const id = document.getElementById('appId')?.value || 'BBA-DRAFT';
+    alert('Your progress has been saved. Reference: ' + id + '\n\nYou can return to complete your application at any time.');
+  }
+
+  function selectAccount(el) {
+    document.querySelectorAll('.account-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    el.querySelector('input').checked = true;
+  }
+
+  function showFileName(input, displayId) {
+    const display = document.getElementById(displayId);
+    if(input.files && input.files[0]) {
+      display.textContent = '✓ ' + input.files[0].name;
+      display.style.display = 'block';
+      const area = input.closest('.file-upload-area');
+      if (area) { area.style.borderColor = ''; const m = area.querySelector('.file-error-msg'); if(m) m.remove(); }
+    }
+  }
+
+  function copyText(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = 'Copied!';
+      btn.style.background = 'rgba(56,178,224,0.2)';
+      btn.style.color = '#38b2e0';
+      setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.style.color = ''; }, 1500);
+    });
+  }
+
+  function submitForm() {
+    const errors = validateStep(9);
+    if (errors.length > 0) return;
+    const appId = document.getElementById('appId').value || 'BBA-2025-' + Math.floor(Math.random()*90000+10000);
+    document.getElementById('successAppId').textContent = appId;
+    document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('stepSuccess').classList.add('active');
+    document.querySelectorAll('.step-tab').forEach(t => t.classList.add('completed'));
+    document.getElementById('progressFill').style.width = '100%';
+    document.getElementById('progressPct').textContent = '100% Complete';
+    document.getElementById('stepLabel').textContent = 'Submitted ✓';
+    window.scrollTo({top: 0, behavior:'smooth'});
+  }
+
+  document.querySelectorAll('.step-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const n = +tab.dataset.step;
+      if(n < currentStep) { currentStep = n; showStep(n); }
+    });
+  });
+</script>
+</body>
+</html>
